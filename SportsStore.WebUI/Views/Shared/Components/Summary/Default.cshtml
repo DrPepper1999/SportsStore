@@ -1,0 +1,16 @@
+﻿@model SportsStore.Domain.Entities.Cart
+
+<div class="">
+    <div class="row align-items-center">
+        <div class="col order-last">
+            @Html.ActionLink("Checkout", "index", "Cart",
+            new {returnUrl = Context.Request.Path + Context.Request.QueryString},
+            new {@class = "btn btn-default navbar-btn btn-light"})
+        </div>
+        <div class="navbar-text col">
+            <b>Your cart:</b>
+            @Model.LineCollection.Sum(x => x.Quantity) item(s)
+            @Model.ComputeTotalValue().ToString("c")
+        </div>
+    </div>
+</div>

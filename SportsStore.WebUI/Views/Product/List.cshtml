@@ -1,0 +1,22 @@
+﻿@using SportsStore.Domain.Entities;
+@model ProductsListViewModel;
+
+@{
+    ViewData["Title"] = "List";
+}
+
+@foreach (var product in Model.Products)
+{
+    @Html.Partial("ProductSummary", product);
+}
+<div class="btn-group float-end pt-4">
+    @foreach (var link in @Html.PageLinks(Model.PagingInfo,
+    x => Url.Action("List", new { page = x, category = Model.CurrentCategory })))
+    {
+        <span>
+            @link
+        </span>
+    }
+</div>
+    
+

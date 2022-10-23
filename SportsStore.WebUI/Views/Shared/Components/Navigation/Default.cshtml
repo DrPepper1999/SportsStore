@@ -1,0 +1,23 @@
+﻿@model IEnumerable<string>;
+
+<div class="container">
+    <div class="row py-2">
+        @Html.ActionLink("Home", "List", "Product", null,
+        new {@class = "btn btn-lg "
+        + (ViewBag.SelectedCategory == "" ? "btn-primary" : "btn-light")})
+    </div>
+        @foreach (var link in Model)
+        {
+            <div class="row py-2">
+                @Html.RouteLink(link, new {
+                    controller = "Product",
+                    action = "List",
+                    category = link,
+                    page = 1
+                }, new {
+                 @class = $"btn btn-lg col btn-primary "
+                 + (link == ViewBag.SelectedCategory ? "btn-primary" : "btn-light")
+                })
+            </div>
+        }
+</div>
